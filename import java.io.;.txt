@@ -1,0 +1,50 @@
+import java.io.*;
+class Employee{
+      String name,address,id;
+      int salary;
+      Employee (String n,String ad,String id,int sal){
+               name=n;
+               address=ad;
+               this.id=id;
+               salary=sal;
+      }
+}
+
+class Dept{
+      String name,location;
+      Employee e[]=new Employee[500];
+      int i;
+      Dept (String n,String l){
+           name=n;
+           location=l;
+      }
+      public void add(int i,String n,String ad,String id,int sal){
+             e[i]=new Employee(n,ad,id,sal);
+      }   
+      public void remove(int i){
+             e[i]=null;
+      }
+      public static void main(String args[])throws IOException{
+             BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+             Dept d=new Dept("Information Technology","Jadavpur University");
+             String nm,add,id;
+             int sal,i;
+             System.out.println("Adding 5 employees...");
+             for (i=0;i<5;i++){
+                 System.out.println("For "+(i+1)+" th employee");
+                 System.out.println("Enter name");
+                 nm=br.readLine();
+                 System.out.println("Enter address");
+                 add=br.readLine();
+                 System.out.println("Enter id");
+                 id=br.readLine();
+                 System.out.println("Enter salary");
+                 sal=Integer.parseInt(br.readLine());
+                 d.add(i,nm,add,id,sal);
+             }
+             int tot_exp;
+             for (i=0;i<5;i++)
+                 tot_exp+=d.e[i].salary;
+             System.out.println("Total expenditure of department="+tot_exp);    
+      }
+}
